@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.card{
+  padding: 1px;
+  width: 18rem;
+  margin: 10px;
+}
+.cardBox{
+  display: -webkit-inline-box;
+}
 
 .App-logo {
   height: 40vmin;

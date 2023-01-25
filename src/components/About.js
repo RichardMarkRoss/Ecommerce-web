@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chart from './sub-components/Chart';
 class About extends Component {
   constructor(props) {
     super(props);
@@ -78,6 +79,7 @@ class About extends Component {
         <span id="txt-secondary"></span>
         <span id="txt-tertiary"></span>
       </p>   
+      <Chart />
       </div>
     );
   }

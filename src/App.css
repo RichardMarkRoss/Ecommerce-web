@@ -10,6 +10,11 @@
   display: -webkit-inline-box;
 }
 
+canvas{
+  width:100%;
+  max-width:700px
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

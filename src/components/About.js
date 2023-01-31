@@ -1,89 +1,87 @@
 import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
+import { HiSwitchHorizontal } from 'react-icons/hi';
+import Dropdown from 'react-dropdown';
 import Chart from './sub-components/Chart';
-class About extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      rates: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+// import style './About.css';
+
+function About() {
+  
+  // Initializing all the state variables 
+  const [info, setInfo] = useState([]);
+  const [input, setInput] = useState(0);
+  const [from, setFrom] = useState("zar");
+  const [to, setTo] = useState("usd");
+  const [options, setOptions] = useState([]);
+  const [output, setOutput] = useState(0);
+  
+  // Calling the api whenever the dependency changes
+  useEffect(() => {
+    Axios.get(
+`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${from}.json`)
+   .then((res) => {
+      setInfo(res.data[from]);
+    })
+  }, [from]);
+  
+  // Calling the convert function whenever
+  // a user switches the currency
+  useEffect(() => {
+    setOptions(Object.keys(info));
+    convert();
+  }, [info])
+    
+  // Function to convert the currency
+  function convert() {
+    var rate = info[to];
+    setOutput(input * rate);
   }
-
-  componentDidMount() {
-    fetch("https://api.exchangerate.host/latest?base=ZAR")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            rates: result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+  
+  // Function to switch between two currency
+  function flip() {
+    var temp = from;
+    setFrom(to);
+    setTo(temp);
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    document.getElementById("txt-primary").value= this.state.value1;
-    document.getElementById("txt-secondary").value= this.state.value2;
-    event.preventDefault();
-  }
-
-
-  render() {
-    const { error, isLoaded, rates } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      var tifOptions = [];
-
-      Object.keys(rates.rates).forEach(function(key) {
-      tifOptions.push(<option value={key}>{rates.rates[key]}</option>);
-      });
-    return (
-
-        <div>
-          <h2>Currency Exchange</h2>
-          <hr/>
-
-        <form onSubmit={this.handleSubmit}>
-        <input id="exhange-amount" type="number" />
-        <select value={this.state.value1} id="primary" class="input">
-        {tifOptions.map(rate => (
-                    <option value={rate.props.value}>{rate.props.value}</option>
-                  ))}
-        </select>
-        <input id="amount" type="number" />
-        <select value={this.state.value2} id="secondary" class="input">
-        {tifOptions.map(rate => (
-                    <option value={rate.props.value}>{rate.props.value}</option>
-                  ))}</select>   
-        <input id="btn-convert" type="button" value="Convert" />   
-      </form>
-      <p id="result">
-        <span id="txt-primary"></span>
-        <span id="txt-secondary"></span>
-        <span id="txt-tertiary"></span>
-      </p>   
-      <Chart />
+  
+  return (
+    <div className="About">
+      <div className="heading">
+        <h1>Currency converter</h1>
       </div>
-    );
-  }
+      <div className="container">
+        <div className="left">
+          <h3>Amount</h3>
+          <input type="text" 
+             placeholder="Enter the amount" 
+             onChange={(e) => setInput(e.target.value)} />
+        </div>
+        <div className="middle">
+          <h3>From</h3>
+          <Dropdown options={options} 
+                    onChange={(e) => { setFrom(e.value) }}
+          value={from} placeholder="From" />
+        </div>
+        <div className="switch">
+          <HiSwitchHorizontal size="30px" 
+                        onClick={() => { flip()}}/>
+        </div>
+        <div className="right">
+          <h3>To</h3>
+          <Dropdown options={options} 
+                    onChange={(e) => {setTo(e.value)}} 
+          value={to} placeholder="To" />
+        </div>
+      </div>
+      <div className="result">
+        <button onClick={()=>{convert()}}>Convert</button>
+        <h2>Converted Amount:</h2>
+        <p>{input+" "+from+" = "+output.toFixed(2) + " " + to}</p>
+  
+      </div>
+    </div>
+  );
 }
-}
-
+  
 export default About;

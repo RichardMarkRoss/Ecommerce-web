@@ -27,7 +27,7 @@ class App extends Component {
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active"><Link to={'/'} className="nav-link"> Home </Link></li>
               <li class="nav-item"><Link to={'/contact'} className="nav-link">Contact</Link></li>
-              <li class="nav-item"><Link to={'/about'} className="nav-link">About</Link></li>
+              <li class="nav-item"><Link to={'/about'} className="nav-link">Exchange</Link></li>
               <li class="nav-item"><Link to={'/items'} className="nav-link">Render Items</Link></li>
             </ul>
           </div>

@@ -46,7 +46,7 @@ export class Instruction extends Component {
                 <div class="card-body">
                   <h5 class="card-title">{item.title}</h5>
                   <p class="card-text"> {item.description}</p>
-                  <a href="#" class="btn btn-primary">R {item.price.toFixed(2)}</a>
+                  <a href="#" class="btn btn-primary">$ {item.price.toFixed(2)}</a>
                   </div>
                 </div>
               ))}

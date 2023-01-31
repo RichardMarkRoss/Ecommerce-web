@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { HiSwitchHorizontal } from 'react-icons/hi';
 import Dropdown from 'react-dropdown';
 import Chart from './sub-components/Chart';
-// import style './About.css';
+import './About.css';
 
 function About() {
   
@@ -47,19 +47,19 @@ function About() {
   
   return (
     <div className="About">
-      <div className="heading">
+      <div className="heads">
         <h1>Currency converter</h1>
       </div>
-      <div className="container">
+      <div className="contain">
         <div className="left">
-          <h3>Amount</h3>
-          <input type="text" 
+          <h4>Amount</h4>
+          <input type="text" class="input-group mb-3"
              placeholder="Enter the amount" 
              onChange={(e) => setInput(e.target.value)} />
         </div>
         <div className="middle">
-          <h3>From</h3>
-          <Dropdown options={options} 
+          <h4>From</h4>
+          <Dropdown className='myClassName' options={options} 
                     onChange={(e) => { setFrom(e.value) }}
           value={from} placeholder="From" />
         </div>
@@ -68,17 +68,16 @@ function About() {
                         onClick={() => { flip()}}/>
         </div>
         <div className="right">
-          <h3>To</h3>
-          <Dropdown options={options} 
+          <h4>To</h4>
+          <Dropdown className='myClassName' options={options} 
                     onChange={(e) => {setTo(e.value)}} 
           value={to} placeholder="To" />
         </div>
       </div>
       <div className="result">
         <button onClick={()=>{convert()}}>Convert</button>
-        <h2>Converted Amount:</h2>
+        <h3>Converted Amount:</h3>
         <p>{input+" "+from+" = "+output.toFixed(2) + " " + to}</p>
-  
       </div>
     </div>
   );

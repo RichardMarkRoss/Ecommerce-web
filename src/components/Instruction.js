@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 export class Instruction extends Component {
   constructor(props) {
     super(props);

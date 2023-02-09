@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { HiSwitchHorizontal } from 'react-icons/hi';
 import Dropdown from 'react-dropdown';
-import Chart from './sub-components/Chart';
 import './About.css';
 
 function About() {

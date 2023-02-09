@@ -13,29 +13,15 @@ import About from './components/About';
 import Instruction from './components/Instruction';
 import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import UserLogin from './components/UsersLogin';
+import Header from './components/Header';
+import Footer from './components/Header';
 class App extends Component {
   render() {
     return (
     <Router>      
         <div>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">React</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active"><Link to={'/'} className="nav-link"> Home </Link></li>
-              <li class="nav-item"><Link to={'/contact'} className="nav-link">Contact</Link></li>
-              <li class="nav-item"><Link to={'/about'} className="nav-link">Exchange</Link></li>
-              <li class="nav-item"><Link to={'/items'} className="nav-link">Render Items</Link></li>
-            </ul>
-          </div>
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </nav>
+        <Header/>
           <hr />
           <Routes>
               <Route path='/' element={<Home />} />
@@ -43,6 +29,7 @@ class App extends Component {
               <Route path='/about' element={<About />} />
               <Route path='/items' element={<Instruction />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/userLogin' element={<UserLogin />} />
           </Routes>
         </div>
       </Router>

@@ -6,10 +6,7 @@ class Home extends Component {
       <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="/"
-        >
+        <a className="App-link"href="/">
           Hello World!
         </a>
       </header>

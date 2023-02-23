@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Products from './Products';
 
-export class Instruction extends Products {
+export class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,18 +8,15 @@ export class Instruction extends Products {
       isLoaded: false,
       items: []
     };
-    
-
   }
-
   componentDidMount() {
-    fetch("https://dummyjson.com/product/1")
+    fetch("https://dummyjson.com/product")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result
+            items: result.products
             
           });
         },
@@ -57,4 +53,4 @@ export class Instruction extends Products {
   }
 }
 }
-export default Instruction;
+export default Products;

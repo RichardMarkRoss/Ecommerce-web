@@ -10,8 +10,8 @@ import {
 import Contact from './components/Contact';
 import Home from './components/Home';
 import About from './components/About';
-import Instruction from './components/Instruction';
-import Login from './components/Login';
+import Currency from './components/Currency';
+import Products from './components/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserLogin from './components/UsersLogin';
 import Header from './components/Header';
@@ -19,16 +19,15 @@ import Footer from './components/Header';
 class App extends Component {
   render() {
     return (
-    <Router>      
+    <Router>
+      <Header/>      
         <div>
-        <Header/>
           <hr />
           <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/about' element={<About />} />
-              <Route path='/items' element={<Instruction />} />
-              <Route path='/login' element={<Login />} />
+              <Route path='/products' element={<Products />} />
               <Route path='/userLogin' element={<UserLogin />} />
           </Routes>
         </div>

@@ -1,36 +1,72 @@
-<Router>  
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Bin</title>
 
-<hr />
-<main class="mt-5 pt-4">
-    <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/items' element={<Instruction />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/userLogin' element={<UserLogin />} />
-        <Route path='/three' element={<Three />} />
+</head>
+<body>
+  <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+<Script>
+  var canvas = document.getElementById("canvas"),
+    context = canvas.getContext("2d");
 
-    </Routes>
-</main>
-</Router>
+var maxDist = 100;
+var nodes = [];
 
+for(var i = 0; i < 100; i++) {
+  nodes.push({
+    x: Math.random() * 600,
+    y: Math.random() * 600,
+    vx: Math.random() * 2 - 1,
+    vy: Math.random() * 2 - 1
+  });
+}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">React</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active"><Link to={'/'} className="nav-link"> Home </Link></li>
-        <li class="nav-item"><Link to={'/contact'} className="nav-link">Post</Link></li>
-        <li class="nav-item"><Link to={'/about'} className="nav-link">Exchange</Link></li>
-        <li class="nav-item"><Link to={'/items'} className="nav-link">Render Items</Link></li>
-        <li class="nav-item"><Link to={'/userLogin'} className="nav-link">User List</Link></li>
-      </ul>
-    </div>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
+update();
+
+function update() {
+  context.clearRect(0, 0, 600, 600);
+  for(var i = 0; i < 100; i++) {
+    var node = nodes[i];
+    node.x += node.vx;
+    node.y += node.vy;
+    if(node.x > 600) {
+      node.x = 0;
+    }
+    else if(node.x < 0) {
+      node.x = 600;
+    }
+    if(node.y > 600) {
+      node.y = 0;
+    }
+    else if(node.y < 0) {
+      node.y = 600;
+    }
+    context.beginPath();
+    context.arc(node.x, node.y, 2, 0, Math.PI * 2);
+    context.fill();
+  }
+
+  for(var i = 0; i < nodes.length - 1; i++) {
+    var nodeA = nodes[i];
+    for(var j = i + 1; j < nodes.length; j++) {
+      var nodeB = nodes[j];
+      var dx = nodeB.x - nodeA.x,
+          dy = nodeB.y - nodeA.y,
+          dist = Math.sqrt(dx * dx + dy * dy);
+      if(dist < maxDist) {
+        context.lineWidth = 1 - dist / maxDist;
+        context.beginPath();
+        context.moveTo(nodeA.x, nodeA.y);
+        context.lineTo(nodeB.x, nodeB.y);
+        context.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(update);
+}
+</Script>
+</html>

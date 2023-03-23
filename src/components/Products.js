@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Products.css';
 
 export class Products extends Component {
   constructor(props) {
@@ -37,18 +38,20 @@ export class Products extends Component {
       return <div>Loading...</div>;
     } else {
     return(
-        <div class="card-columns">
-        {items.map((item) => ( 
-                <div class="card">
-                <img class="card-img-top" src= {item.thumbnail} alt="Card image cap"/>
-                <div class="card-body">
-                  <h5 class="card-title">{item.title}</h5>
-                  <p class="card-text"> {item.description}</p>
-                  <a href="#" class="btn btn-primary">$ {item.price.toFixed(2)}</a>
-                  </div>
-                </div>
-              ))}
+<div className="row">
+{items.map((item) => ( 
+  <div className="column">
+    <div className="card">
+    <img className="card-img-top" src= {item.thumbnail} alt="Card image cap"/>
+          <div className="card-body">
+            <h5 className="card-title">{item.title}</h5>
+            <p className="card-text"> {item.description}</p>
+            <a href="#" className="btn btn-primary">$ {item.price.toFixed(2)}</a>
+          </div>
         </div>
+    </div>
+  ))}
+</div>
     )
   }
 }

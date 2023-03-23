@@ -7,15 +7,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Contact from './components/Contact';
-import Home from './components/Home';
-import About from './components/About';
-import Currency from './components/Currency';
-import Products from './components/Products';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserLogin from './components/UsersLogin';
-import Header from './components/Header';
-import Footer from './components/Header';
+import {Checkout,Home,About,Currency,Products,UserLogin,Header,Footer,Login,Card} from './components/index';
 class App extends Component {
   render() {
     return (
@@ -24,13 +17,16 @@ class App extends Component {
         <div>
           <hr />
           <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/contact' element={<Contact />} />
+              <Route path='/' element={<Login />} />
+              <Route path='/Checkout' element={<Checkout />} />
               <Route path='/about' element={<About />} />
               <Route path='/products' element={<Products />} />
               <Route path='/userLogin' element={<UserLogin />} />
+              <Route path='/Home' element={<Home />} />
+              <Route path='/Card' element={<Card />} />
           </Routes>
         </div>
+        <Footer/>  
       </Router>
     );
   }

@@ -27,9 +27,6 @@ class Header extends Component {
                         <a class="nav-link"><Link to={'/'} className="nav-link">Home</Link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><Link to={'/contact'} className="nav-link">Post</Link></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link"><Link to={'/about'} className="nav-link">Exchange</Link></a>
                     </li>
                     <li class="nav-item">
@@ -41,7 +38,7 @@ class Header extends Component {
                 </ul>
             </div>
             <div class="d-flex align-items-center">
-                <a class="nav-link me-3" href="#">
+                <a class="nav-link me-3" href="/checkout">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge rounded-pill badge-notification bg-danger">1</span>
                 </a>

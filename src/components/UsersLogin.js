@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import logo from '../logo.svg';
 
 export class UserLogin extends Component {
@@ -12,7 +12,7 @@ export class UserLogin extends Component {
   }
 
   componentDidMount() {
-    fetch("https://fakestoreapi.com/users")
+    fetch("https://dummyjson.com/users/1")
       .then(res => res.json())
       .then(
         (result) => {
@@ -59,14 +59,14 @@ export class UserLogin extends Component {
             <tbody>
             {items.map((item) => ( 
               <tr>
-                <th scope="row">{item.id}</th>
-                <td>{item.username}</td>
-                <td>{item.password}</td>
-                <td>{item.name.firstname}</td>
-                <td>{item.name.lastname}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={item.address.geolocation.lat}%2C-{item.address.geolocation.long}">View location</a></td>
+                <th scope="row">{item.user.id}</th>
+                <td>{item.user.username}</td>
+                <td>{item.user.password}</td>
+                <td>{item.user.firstname}</td>
+                <td>{item.user.lastname}</td>
+                <td>{item.user.email}</td>
+                <td>{item.user.phone}</td>
+                <td><a target="_blank" rel="noreferrer" href={"https://www.google.com/maps/search/?api=1&query="+item.address.coordinates.lat+"%2C"+item.address.coordinates.lng}>View location</a></td>
               </tr>
                 ))}
             </tbody>
